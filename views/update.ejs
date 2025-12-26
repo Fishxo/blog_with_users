@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/update/<%= blog.id%>" method="post">
+            <input type="text" name="Btitle" value="<%= blog.Btitle%>" required>
+            <input type="text" name="desc" value="<%= blog.desc%>" required>
+            <input type="text" name="author" value="<%= blog.author%>" required>
+            <input type="text" name="cate" value="<%= blog.cate%>" required>
+            <input type="date" name="date" value="<%= blog.date%>" required>
+            <button type="submit">save </button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>you well come to home !</h1>
+
+    <%/* form for mini blog */%>
+        <form action="/post" method="post">
+            <label for="titile"> blog title</label>
+            <input type="text" name="Btitle" required >
+            <label for="desc">description</label>
+            <input type="text" name="desc" required>
+            <label for="author" >author</label>
+            <input type="text" name="author" required>
+            <label for="cate">category</label>
+            <input type="text" name="cate" required>
+            <label for="date">date</label>
+            <input type="date" name="date">
+            <button type="submit">post</button>
+        </form>
+
+        <% /* using loops to show */%>
+
+        <% blogs.forEach(blog => {%>
+           <%= blog.Btitle %>
+           <%= blog.desc %>
+           <%= blog.author %>
+           <%= blog.cate %>
+           <%= blog.date %>
+           
+           <form action="/delete/<%= blog.id%>" method="post">
+            <button>delete</button>
+           </form>
+      <%  })%> 
+
+</body>
+</html>
