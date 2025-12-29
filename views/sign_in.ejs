@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: flex-start; /* align to top */
+    height: 100vh;
+    margin: 0;
+    padding-top: 50px; /* push down from top */
+}
+
+/* Container for headline + form */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center horizontally */
+}
+
+/* Form styling */
+form {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 350px;
+    margin-top: 20px; /* space below h1 */
+}
+
+/* Headline */
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Rest of input/button styling remains same */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>simple sign in page here for you!</h1>
+     <form action="/sign_in" method="post">
+        <label for="firstName">first name </label>
+        <input type="text" name="firstName" required>
+        <label for="secondName"> second name </label>
+        <input type="text" name="secondName" required>
+        <label for="email" >email</label>
+        <input type="email" name="email" required>
+        <label for="password" >password</label>
+        <input type="password" name="password" required>
+        <button>sign in</button>
+     </form>
+     </div>
+</body>
+</html>
