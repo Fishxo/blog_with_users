@@ -4,13 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form container */
+form {
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form labels */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="date"] {
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Submit button */
+button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive */
+@media (max-width: 450px) {
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+    </style>
 </head>
 <body>
     <form action="/update/<%= blog.id%>" method="post">
+            <label for="Btitle">blog title</label>
             <input type="text" name="Btitle" value="<%= blog.Btitle%>" required>
+            <label for="desc">description</label>
             <input type="text" name="desc" value="<%= blog.desc%>" required>
+            <label for="author">author</label>
             <input type="text" name="author" value="<%= blog.author%>" required>
+            <label for="cate">category</label>
             <input type="text" name="cate" value="<%= blog.cate%>" required>
+            <label for="date">date</label>
             <input type="date" name="date" value="<%= blog.date%>" required>
             <button type="submit">save </button>
     </form>

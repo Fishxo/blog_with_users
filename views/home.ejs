@@ -4,9 +4,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.blog-buttons {
+    display: flex;           /* side by side */
+    gap: 10px;               /* space between buttons */
+    margin-top: 10px;
+}
+
+.blog-buttons form {
+    margin: 0;               /* remove extra margin */
+}
+
+/* Page title */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Blog form */
+form {
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 400px;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+form input {
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+form button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+.blog-item {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* category tag */
+.blog-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #3498db;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* title */
+.blog-title {
+    margin: 10px 0;
+    font-size: 22px;
+    color: #222;
+}
+
+/* author + date */
+.blog-meta {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 12px;
+}
+
+/* description */
+.blog-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+    
+    /* prevent stretching */
+    word-wrap: break-word;  /* break long words */
+    overflow-wrap: break-word;
+    white-space: normal;    /* allow wrapping */
+    max-width: 100%;        /* do not exceed container */
+}
+
+.blog-item {
+    max-width: 450px;  /* keeps blog card from stretching */
+    word-wrap: break-word;
+}
+
+
+/* buttons */
+.blog-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-btn,
+.edit-btn {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.edit-btn {
+    background: #3498db;
+    color: white;
+}
+
+
+/* Position logout button at top-right corner */
+.logout-container {
+    position: fixed;   
+    top: 20px;            
+    right: 20px;          
+    z-index: 100;        
+}
+
+.logout-container form {
+    display: inline-block;   /* shrink form to button size */
+    width: auto;
+    margin: 0;               /* remove default form margin */
+    padding:  6px 12px;              /* remove form padding */
+}
+
+.logout-container button {
+    display: inline-block;
+    width: auto;             /* shrink to content */
+    padding: 6px 12px;       /* smaller size */
+    background-color: #ffffff;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-container button:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+
+
+    </style>
 </head>
 <body>
     <h1>you well come to home !</h1>
+  <div class="logout-container">
+        <form action="/logout" method="get">
+            <button type="submit">Log Out</button>
+        </form>
+    </div>
+</body>
+
 
     <%/* form for mini blog */%>
         <form action="/post" method="post">
@@ -19,23 +210,40 @@
             <label for="cate">category</label>
             <input type="text" name="cate" required>
             <label for="date">date</label>
-            <input type="date" name="date">
+            <input type="date" name="date" required>
             <button type="submit">post</button>
         </form>
 
-        <% /* using loops to show */%>
+       <% blogs.forEach(blog => { %>
+  <div class="blog-item">
 
-        <% blogs.forEach(blog => {%>
-           <%= blog.Btitle %>
-           <%= blog.desc %>
-           <%= blog.author %>
-           <%= blog.cate %>
-           <%= blog.date %>
-           
-           <form action="/delete/<%= blog.id%>" method="post">
-            <button>delete</button>
-           </form>
-      <%  })%> 
+    <!-- category tag -->
+    <span class="blog-tag"><%= blog.cate %></span>
+
+    <!-- title -->
+    <h2 class="blog-title"><%= blog.Btitle %></h2>
+
+    <!-- meta info -->
+    <p class="blog-meta">
+      By <strong><%= blog.author %></strong> • <%= blog.date %>
+    </p>
+
+    <!-- description -->
+    <p class="blog-desc"><%= blog.desc %></p>
+
+    <!-- buttons -->
+    <div class="blog-buttons">
+      <form action="/delete/<%= blog.id %>" method="post">
+        <button class="delete-btn">🗑</button>
+      </form>
+      <form action="/edit/<%= blog.id %>" method="get">
+        <button class="edit-btn">✏️</button>
+      </form>
+    </div>
+
+  </div>
+<% }) %>
+
 
 </body>
 </html>
